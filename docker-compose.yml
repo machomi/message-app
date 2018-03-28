@@ -1,0 +1,17 @@
+version: '3'
+services: 
+  mongo:
+    image: mongo:3
+    ports:
+      - 27017:27017
+  app:
+    image: message-app:v0.1
+    ports: 
+      - 8080:8080
+    links: 
+      - mongo
+    depends_on: 
+      - mongo
+    environment: 
+      - MONGO_URL=mongodb://mongo/messageApp
+    
